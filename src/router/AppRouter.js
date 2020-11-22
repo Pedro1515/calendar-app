@@ -12,6 +12,7 @@ import { CalendarScreen } from '../components/calendar/CalendarScreen';
 import { startChecking } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
+import Swal from 'sweetalert2';
 
 export const AppRouter = () => {
 
@@ -24,14 +25,25 @@ export const AppRouter = () => {
 
     }, [dispatch])
 
-    // if ( checking ) {
-    //         return (<></>);
-    // }
+    if ( checking ) {
+        Swal.fire({
+            title: "Cargando...",
+            text: "Espere un momento",
+            showConfirmButton: false,
+            onBefore0pen: () => {
+              Swal.showLoading();
+            },
+          });
+    } else {
+        Swal.close();
+    }
 
     return (
         <Router>
             <div>
                 <Switch>
+
+                    {(checking) && (<></>)}
 
                     <PublicRoute 
                         exact 
