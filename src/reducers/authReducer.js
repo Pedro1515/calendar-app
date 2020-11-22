@@ -2,7 +2,6 @@ import { types } from "../types/types";
 
 const initialState = {
   checking: true,
-  disabledSubmit: false,
 };
 
 export const authReducer = (state = initialState, action) => {
