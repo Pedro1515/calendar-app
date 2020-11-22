@@ -3,6 +3,8 @@ export const types = {
 
     uiOpenModal: '[ui] Open modal',
     uiCloseModal: '[ui] Close modal',
+    uiStartLoading: '[ui] Start Loading',
+    uiFinishLoading: '[ui] Finish Loading',
 
     
     eventSetActive: '[event] Set Active',
@@ -22,7 +24,5 @@ export const types = {
     authStartRegister: '[auth] Start Register',
     authStartStartTokenRenew: '[auth] Start token renew',
     authLogout: '[auth] Logout',
-    authDisableSubmit: '[auth] submit Off',
-    authActiveteSubmit: '[auth] submit On',
 
 }

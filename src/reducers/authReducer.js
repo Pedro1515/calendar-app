@@ -25,18 +25,6 @@ export const authReducer = (state = initialState, action) => {
         checking: false,
       };
 
-    case types.authDisableSubmit:
-      return {
-        ...state,
-        disabledSubmit: true,
-      };
-
-    case types.authActiveteSubmit:
-      return {
-        ...state,
-        disabledSubmit: false,
-      };
-
     default:
       return state;
   }

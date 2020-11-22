@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import { startLogin, startRegister, submitActive, submitDisable } from '../../actions/auth';
+import { startLoading } from '../../actions/ui';
 import Swal from 'sweetalert2';
 
 import './login.css';
@@ -10,7 +11,7 @@ export const LoginScreen = () => {
 
     const dispatch = useDispatch();
 
-    const { disabledSubmit } = useSelector(state => state.auth)
+    const { loading } = useSelector(state => state.ui)
     
     const [ formLoginValues, handleLoginInputChange ] = useForm({
         lEmail: '',
@@ -28,18 +29,18 @@ export const LoginScreen = () => {
     const { rName, rEmail, rPassword1, rPassword2 } = formRegisterValues;
     
     const handleLogin = ( e ) => {
-        dispatch(submitDisable())
+        dispatch(startLoading())
         e.preventDefault();
         dispatch( startLogin( lEmail, lPassword ) );
     }
     
     
     const handleRegister = ( e ) => {
-        dispatch(submitDisable())
+        dispatch(startLoading())
         e.preventDefault();
 
         if ( rPassword1 !== rPassword2 ) {
-            dispatch(submitActive())
+            dispatch(startLoading())
             return Swal.fire('Error', 'Las contraseñas deben de ser iguales','error');
         } else {
             dispatch( startRegister( rEmail, rPassword1, rName ) ); 
@@ -78,7 +79,7 @@ export const LoginScreen = () => {
                                 type="submit"
                                 className="btnSubmit"
                                 value="Login" 
-                                disabled={ disabledSubmit }
+                                disabled={ loading }
                             />
                         </div>
                     </form>
@@ -134,7 +135,7 @@ export const LoginScreen = () => {
                                 type="submit" 
                                 className="btnSubmit" 
                                 value="Crear cuenta" 
-                                disabled={ disabledSubmit }
+                                disabled={ loading }
                             />
                         </div>
                     </form>

@@ -2,6 +2,7 @@ import { fetchSinToken, fetchConToken } from "../helpers/fetch";
 import { types } from "../types/types";
 import Swal from "sweetalert2";
 import { eventLogout } from "./events";
+import { finishLoading } from "./ui";
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {
@@ -19,23 +20,23 @@ export const startLogin = (email, password) => {
             name: body.name,
           })
         );
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else if (body.msg) {
         Swal.fire("Error", body.msg, "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else if (body.errors.email) {
         Swal.fire("Error", body.errors.email.msg, "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else if (body.errors.password) {
         Swal.fire("Error", body.errors.password.msg, "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else {
         Swal.fire("Error", "Fallo en el registro, intentar mas tarde", "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       }
     } catch (error) {
       Swal.fire("Error", "Fallo en el registro, intentar mas tarde", "error");
-      dispatch(submitActive());
+      dispatch(finishLoading());
       console.error("error catch in startLogin. " + error);
     }
   };
@@ -61,26 +62,26 @@ export const startRegister = (email, password, name) => {
             name: body.name,
           })
         );
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else if (body.msg) {
         Swal.fire("Error", body.msg, "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else if (body.errors.name) {
         Swal.fire("Error", body.errors.name.msg, "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else if (body.errors.email) {
         Swal.fire("Error", body.errors.email.msg, "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else if (body.errors.password) {
         Swal.fire("Error", body.errors.password.msg, "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       } else {
         Swal.fire("Error", "Fallo en el registro, intentar mas tarde", "error");
-        dispatch(submitActive());
+        dispatch(finishLoading());
       }
     } catch (error) {
       Swal.fire("Error", "Fallo en el registro, intentar mas tarde", "error");
-      dispatch(submitActive());
+      dispatch(finishLoading());
       console.error("error catch in startRegister. " + error);
     }
   };
@@ -123,7 +124,3 @@ export const startLogout = () => {
 };
 
 const logout = () => ({ type: types.authLogout });
-
-export const submitDisable = () => ({ type: types.authDisableSubmit });
-
-export const submitActive = () => ({ type: types.authActiveteSubmit });

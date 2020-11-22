@@ -24,9 +24,9 @@ export const AppRouter = () => {
 
     }, [dispatch])
 
-    if ( checking ) {
-            return (<></>);
-    }
+    // if ( checking ) {
+    //         return (<></>);
+    // }
 
     return (
         <Router>
