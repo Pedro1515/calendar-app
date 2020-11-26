@@ -30,7 +30,7 @@ export const AppRouter = () => {
             title: "Cargando...",
             text: "Espere un momento",
             showConfirmButton: false,
-            timer: 10000,
+            timer: 15000,
             timerProgressBar: true,
             onBefore0pen: () => {
               Swal.showLoading();
